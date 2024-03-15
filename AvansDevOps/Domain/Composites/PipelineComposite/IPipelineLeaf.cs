@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AvansDevOps.Domain.Composite.PipelineComposite
+namespace AvansDevOps.Domain.Composite.PipelineComposites
 {
     internal interface IPipelineLeaf
     {

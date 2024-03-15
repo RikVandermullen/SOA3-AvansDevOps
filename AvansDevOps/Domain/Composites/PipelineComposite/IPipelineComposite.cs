@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AvansDevOps.Domain.Composite.ForumComposite
+namespace AvansDevOps.Domain.Composite.PipelineComposites
 {
-    internal interface IForumComponent
+    internal interface IPipelineComposite
     {
     }
 }
