@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AvansDevOps.Domain.Factories.User
+namespace AvansDevOps.Domain
 {
-    internal class ProductOwnerUserFactory
+    internal class Category
     {
     }
 }

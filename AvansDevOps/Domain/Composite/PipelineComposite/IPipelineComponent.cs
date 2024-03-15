@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AvansDevOps.Domain.Factories.Sprint
+namespace AvansDevOps.Domain.Composite.PipelineComposite
 {
-    internal class ReviewSprintFactory
+    internal interface IPipelineComponent
     {
     }
 }
