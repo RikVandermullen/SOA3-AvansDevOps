@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AvansDevOps.Domain.Factories.Sprint
+namespace AvansDevOps.Domain.Factories.UserFactory
 {
-    internal interface ISprintFactory
+    internal class ScrumMasterUserFactory
     {
     }
 }
