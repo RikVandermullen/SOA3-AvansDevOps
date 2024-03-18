@@ -1,4 +1,5 @@
-﻿using AvansDevOps.Domain.States.ReleaseSprintState;
+﻿using AvansDevOps.Domain.States;
+using AvansDevOps.Domain.States.ReleaseSprintState;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +20,12 @@ namespace AvansDevOps.Domain.Sprints
             EndDate = endDate;
         }
 
-        public void SetState(IReleaseSprintState releaseSprintState)
+        public override void SetState(ISprintState releaseSprintState)
         {
-            ReleaseSprintState = releaseSprintState;
+            ReleaseSprintState = (IReleaseSprintState) releaseSprintState;
         }
 
-        public void Start()
+        public override void Start()
         {
             ReleaseSprintState.Start();
         }

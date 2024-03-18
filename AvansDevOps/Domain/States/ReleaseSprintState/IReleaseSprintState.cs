@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.States.ReleaseSprintState
 {
-    public interface IReleaseSprintState
+    public interface IReleaseSprintState: ISprintState
     {
         public void Start();
         public void Finish();

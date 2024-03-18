@@ -36,7 +36,7 @@ namespace AvansDevOps.Domain.Sprints
             ReviewSprintState.Finish();
         }
 
-        public void Start()
+        public override void Start()
         {
             ReviewSprintState.Start();
         }

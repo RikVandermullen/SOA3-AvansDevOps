@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.States.ReviewSprintState
 {
-    public interface IReviewSprintState
+    public interface IReviewSprintState: ISprintState
     {
         public void Start();
         public void Finish();

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AvansDevOps.Domain.States;
+using AvansDevOps.Domain.States.ReleaseSprintState;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +26,9 @@ namespace AvansDevOps.Domain.Sprints
             DateTime currentDate = DateTime.Now;
             return currentDate > EndDate;
         }
+
+        public abstract void Start();
+
+        public abstract void SetState(ISprintState sprintState);
     }
 }

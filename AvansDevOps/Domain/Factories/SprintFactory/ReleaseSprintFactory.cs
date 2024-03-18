@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AvansDevOps.Domain.Sprints;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Factories.SprintFactory
 {
-    internal class ReleaseSprintFactory
+    public class ReleaseSprintFactory : ISprintFactory
     {
+        public override Sprint CreateSprint(string name, DateTime startDate, DateTime endDate)
+        {
+            return new ReleaseSprint(name, startDate, endDate);
+        }
     }
 }
