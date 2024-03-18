@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Strategy.ReportStrategy
 {
-    internal interface IReportExportStrategy
+    public interface IReportExportStrategy
     {
+        public void Export(Report report);
     }
 }

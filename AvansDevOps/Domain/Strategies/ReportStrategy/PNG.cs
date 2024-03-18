@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Strategy.ReportStrategy
 {
-    internal class PNG
+    public class PNG : IReportExportStrategy
     {
+        public void Export(Report report)
+        {
+            Console.WriteLine("Exporting report as PNG.");
+        }
     }
 }
