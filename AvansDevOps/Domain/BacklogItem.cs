@@ -14,7 +14,7 @@ namespace AvansDevOps.Domain
 
         public BacklogItem()
         {
-            BacklogItemState = new TodoState(this);
+            BacklogItemState = new TodoState(this); 
             Activities = new List<Activity>();
         }
 
