@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AvansDevOps.Domain.States.ReleaseSprintState;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,46 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Sprints
 {
-    internal class ReleaseSprint
+    public class ReleaseSprint : Sprint
     {
+        private IReleaseSprintState ReleaseSprintState { get; set; }
+
+        public ReleaseSprint(string name, DateTime startDate, DateTime endDate) : base(name, startDate, endDate)
+        {
+            ReleaseSprintState = new CreatedState(this);
+            Name = name;
+            StartDate = startDate;
+            EndDate = endDate;
+        }
+
+        public void SetState(IReleaseSprintState releaseSprintState)
+        {
+            ReleaseSprintState = releaseSprintState;
+        }
+
+        public void Start()
+        {
+            ReleaseSprintState.Start();
+        }
+
+        public void Finish()
+        {
+           ReleaseSprintState.Finish();
+        }
+
+        public void Deploy()
+        {
+            ReleaseSprintState.Deploy();
+        }
+
+        public void Cancel()
+        {
+            ReleaseSprintState.Cancel();
+        }
+
+        public void Close()
+        {
+            ReleaseSprintState.Close();
+        }
     }
 }

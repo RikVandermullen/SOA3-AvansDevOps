@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.States.ReleaseSprintState
 {
-    internal interface IReleaseSprintState
+    public interface IReleaseSprintState
     {
+        public void Start();
+        public void Finish();
+        public void Deploy();
+        public void Cancel();
+        public void Close();
     }
 }
