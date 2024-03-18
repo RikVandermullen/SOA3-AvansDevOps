@@ -12,7 +12,7 @@ namespace AvansDevOps.Domain.Sprints
         protected DateTime StartDate { get; set; }
         protected DateTime EndDate { get; set; }
 
-        protected Sprint(string name, DateTime startDate, DateTime endDate) 
+        protected Sprint(string name, DateTime startDate, DateTime endDate)
         {
             Name = name;
             StartDate = startDate;
