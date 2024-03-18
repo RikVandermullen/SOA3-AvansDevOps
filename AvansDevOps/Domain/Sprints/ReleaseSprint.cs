@@ -30,24 +30,29 @@ namespace AvansDevOps.Domain.Sprints
             ReleaseSprintState.Start();
         }
 
-        public void Finish()
+        public override void Finish()
         {
            ReleaseSprintState.Finish();
         }
 
-        public void Deploy()
+        public override void Deploy()
         {
             ReleaseSprintState.Deploy();
         }
 
-        public void Cancel()
+        public override void Cancel()
         {
             ReleaseSprintState.Cancel();
         }
 
-        public void Close()
+        public override void Close()
         {
             ReleaseSprintState.Close();
+        }
+
+        public override void StartReview()
+        {
+            throw new NotImplementedException();
         }
     }
 }

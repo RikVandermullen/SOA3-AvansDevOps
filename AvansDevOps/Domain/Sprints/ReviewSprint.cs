@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AvansDevOps.Domain.States.BacklogItemState;
+using AvansDevOps.Domain.States;
 using AvansDevOps.Domain.States.ReviewSprintState;
 
 namespace AvansDevOps.Domain.Sprints
@@ -21,17 +21,17 @@ namespace AvansDevOps.Domain.Sprints
             EndDate = endDate;
         }
 
-        public void SetState(IReviewSprintState reviewSprintState)
+        public override void SetState(ISprintState reviewSprintState)
         {
-            ReviewSprintState = reviewSprintState;
+            ReviewSprintState = (IReviewSprintState) reviewSprintState;
         }
 
-        public void Close()
+        public override void Close()
         {
             ReviewSprintState.Close();
         }
 
-        public void Finish()
+        public override void Finish()
         {
             ReviewSprintState.Finish();
         }
@@ -41,9 +41,19 @@ namespace AvansDevOps.Domain.Sprints
             ReviewSprintState.Start();
         }
 
-        public void StartReview()
+        public override void StartReview()
         {
             ReviewSprintState.StartReview();
+        }
+
+        public override void Cancel()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Deploy()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -27,8 +27,20 @@ namespace AvansDevOps.Domain.Sprints
             return currentDate > EndDate;
         }
 
+        public abstract void SetState(ISprintState sprintState);
+
         public abstract void Start();
 
-        public abstract void SetState(ISprintState sprintState);
+        public abstract void Finish();
+
+        public abstract void StartReview();
+
+        public abstract void Deploy();
+
+        public abstract void Cancel();
+
+        public abstract void Close();
+
+
     }
 }
