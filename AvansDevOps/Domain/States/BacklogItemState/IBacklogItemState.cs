@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.States.BacklogItemState
 {
-    internal interface IBacklogItemState
+    public interface IBacklogItemState
     {
+        public void SetToToDo();
+        public void SetToDoing();
+        public void SetToReadyForTesting();
+        public void SetToTesting();
+        public void SetToTested();
+        public void SetToDone();
     }
 }

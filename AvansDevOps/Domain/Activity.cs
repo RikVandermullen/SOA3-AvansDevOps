@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain
 {
-    internal class Activity
+    public class Activity
     {
+        public bool IsCompleted { get; private set; }
+
+        public Activity()
+        {
+            IsCompleted = false;
+        }
     }
 }
