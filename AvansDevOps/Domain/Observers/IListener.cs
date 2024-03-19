@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Observers
 {
-    public interface Listener
+    public interface IListener
     {
-        public void Notify(Publisher publisher);
+        public void Notify(IPublisher publisher);
     }
 }

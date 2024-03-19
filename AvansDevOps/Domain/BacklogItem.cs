@@ -1,4 +1,5 @@
-﻿using AvansDevOps.Domain.Observers.NotificationObserver;
+﻿using AvansDevOps.Domain.Observers;
+using AvansDevOps.Domain.Observers.NotificationObserver;
 using AvansDevOps.Domain.States.BacklogItemState;
 using AvansDevOps.Domain.Users;
 using System;
@@ -13,11 +14,14 @@ namespace AvansDevOps.Domain
     {
         private IBacklogItemState BacklogItemState { get; set; }
         private List<Activity> Activities { get; set; }
+        public NotificationService NotificationService = new NotificationService();
+        public Developer Developer;
 
-        public BacklogItem()
+        public BacklogItem(Developer developer)
         {
             BacklogItemState = new TodoState(this); 
             Activities = new List<Activity>();
+            Developer = developer;
         }
 
         public bool CheckActivitiesDone()

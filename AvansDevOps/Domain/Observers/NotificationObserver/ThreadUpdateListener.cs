@@ -7,9 +7,9 @@ using AvansDevOps.Domain.Users;
 
 namespace AvansDevOps.Domain.Observers.NotificationObserver
 {
-    public class ThreadUpdateListener : Listener
+    public class ThreadUpdateListener : IListener
     {
-        public void Notify(Publisher publisher)
+        public void Notify(IPublisher publisher)
         {
             if (publisher.GetType() == typeof(Thread))
             {

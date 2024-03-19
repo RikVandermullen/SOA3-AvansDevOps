@@ -9,26 +9,26 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain
 {
-    public class Thread : Publisher
+    public class Thread : IPublisher
     {
         public List<User> Users = new List<User>();
-        public List<Listener> Listeners = new List<Listener>();
+        public List<IListener> Listeners = new List<IListener>();
         public NotificationService NotificationService = new NotificationService();
 
         public void NotifyListeners()
         {
-            foreach(Listener listener in Listeners)
+            foreach(IListener listener in Listeners)
             {
                 listener.Notify(this);
             }
         }
 
-        public void Subscribe(Listener listener)
+        public void Subscribe(IListener listener)
         {
             Listeners.Add(listener);
         }
 
-        public void Unsubscribe(Listener listener)
+        public void Unsubscribe(IListener listener)
         {
             Listeners.Remove(listener);
         }
