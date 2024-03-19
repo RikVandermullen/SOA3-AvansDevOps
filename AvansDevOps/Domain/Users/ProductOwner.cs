@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Users
 {
-    internal class ProductOwner
+    public class ProductOwner : User
     {
+        public ProductOwner(string name, string emailAddress, string slackUsername) : base(name, emailAddress, slackUsername)
+        {
+
+        }
     }
 }

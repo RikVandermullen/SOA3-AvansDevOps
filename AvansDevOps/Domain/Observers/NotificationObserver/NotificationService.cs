@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Observers.NotificationObserver
 {
-    internal class NotificationService
+    public class NotificationService
     {
     }
 }
