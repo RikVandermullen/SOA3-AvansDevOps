@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AvansDevOps.Domain.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Adapters
 {
-    internal interface INotificationService
+    public interface INotificationService
     {
+        public void Send(User user, String message);
     }
 }

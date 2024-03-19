@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AvansDevOps.Domain.Observers.NotificationObserver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,19 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Users
 {
-    internal abstract class User
+    public abstract class User
     {
+        public string Name { get; set; }
+        public string EmailAddress { get; set; }
+        public string SlackUsername { get; set; }
+        public NotificationService NotificationService { get; set; }
+
+        public User(string name, string emailAddress, string slackUsername)
+        {
+            Name = name;
+            EmailAddress = emailAddress;
+            SlackUsername = slackUsername;
+            NotificationService = new NotificationService();
+        }
     }
 }

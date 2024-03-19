@@ -6,7 +6,30 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Adapters.EmailAdapter
 {
-    internal class EmailService
+    public class EmailService
     {
+        private string EmailAddress { get; set; }
+        private string Name { get; set; }
+        private string Message { get; set; }
+
+        public void SetEmailAddress(String emailAddress)
+        {
+            EmailAddress = emailAddress;
+        }
+
+        public void SetName(String name)
+        {
+            Name = name;
+        }
+
+        public void SetMessage(String message)
+        {
+            Message = message;
+        }
+
+        public void SendEmail()
+        {
+            Console.WriteLine($"Sent a notification over Email to {Name}, at {EmailAddress}: '{Message}'.");
+        }
     }
 }
