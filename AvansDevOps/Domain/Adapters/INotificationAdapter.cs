@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Adapters
 {
-    public interface INotificationService
+    public interface INotificationAdapter
     {
         public void Send(User user, string message);
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Adapters.SlackAdapter
 { 
-    public class SlackAdapter : INotificationService
+    public class SlackAdapter : INotificationAdapter
     {
         private SlackService SlackService = new SlackService();
 

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AvansDevOps.Domain
+namespace AvansDevOps.Domain.Observers
 {
-    internal class Tread
+    public interface Listener
     {
+        public void Notify(Publisher publisher);
     }
 }

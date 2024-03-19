@@ -1,4 +1,6 @@
-﻿using AvansDevOps.Domain.States.BacklogItemState;
+﻿using AvansDevOps.Domain.Observers.NotificationObserver;
+using AvansDevOps.Domain.States.BacklogItemState;
+using AvansDevOps.Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;

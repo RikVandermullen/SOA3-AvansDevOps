@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Adapters.EmailAdapter
 {
-    public class EmailAdapter : INotificationService
+    public class EmailAdapter : INotificationAdapter
     {
         private EmailService EmailService = new EmailService();
 

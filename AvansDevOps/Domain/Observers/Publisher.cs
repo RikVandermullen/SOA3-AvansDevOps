@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Observers
 {
-    internal interface IObserverManager
+    public interface Publisher
     {
+        public void Subscribe(Listener listener);
+
+        public void Unsubscribe(Listener listener);
+
+        public void NotifyListeners();
     }
 }

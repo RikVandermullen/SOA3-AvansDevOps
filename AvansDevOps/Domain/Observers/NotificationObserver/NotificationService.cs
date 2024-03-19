@@ -12,19 +12,12 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
 {
     public class NotificationService
     {
-        private List<INotificationService> Adapters = new List<INotificationService> { new EmailAdapter() };
-
         public void Send(User user, string message)
         {
-            foreach(INotificationService adapter in Adapters)
+            foreach(INotificationAdapter platform in user.NotificationPlatforms)
             {
-                adapter.Send(user, message);
+                platform.Send(user, message);
             }
-        }
-
-        public void AddAdapter(INotificationService adapter)
-        {
-            Adapters.Add(adapter);
         }
     }
 }
