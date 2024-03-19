@@ -9,6 +9,6 @@ namespace AvansDevOps.Domain.Adapters
 {
     public interface INotificationService
     {
-        public void Send(User user, String message);
+        public void Send(User user, string message);
     }
 }

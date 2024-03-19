@@ -13,17 +13,17 @@ namespace AvansDevOps.Domain.Adapters.SlackAdapter
         private string Name { get; set; }
         private string Message { get; set; }
 
-        public void SetUsername(String username)
+        public void SetUsername(string username)
         {
             Username = username;
         }
 
-        public void SetName(String name)
+        public void SetName(string name)
         {
             Name = name;
         }
 
-        public void SetMessage(String message)
+        public void SetMessage(string message)
         {
             Message = message;
         }

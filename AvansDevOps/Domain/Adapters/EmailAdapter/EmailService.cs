@@ -12,17 +12,17 @@ namespace AvansDevOps.Domain.Adapters.EmailAdapter
         private string Name { get; set; }
         private string Message { get; set; }
 
-        public void SetEmailAddress(String emailAddress)
+        public void SetEmailAddress(string emailAddress)
         {
             EmailAddress = emailAddress;
         }
 
-        public void SetName(String name)
+        public void SetName(string name)
         {
             Name = name;
         }
 
-        public void SetMessage(String message)
+        public void SetMessage(string message)
         {
             Message = message;
         }

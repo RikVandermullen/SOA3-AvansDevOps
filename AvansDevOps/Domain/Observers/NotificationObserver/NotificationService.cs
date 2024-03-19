@@ -14,12 +14,12 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
         private EmailAdapter EmailAdapter = new EmailAdapter();
         private SlackAdapter SlackAdapter = new SlackAdapter();
 
-        public void SendEmail(User user, String message)
+        public void SendEmail(User user, string message)
         {
             EmailAdapter.Send(user, message);
         }
 
-        public void SendSlack(User user, String message)
+        public void SendSlack(User user, string message)
         {
             SlackAdapter.Send(user, message);
         }
