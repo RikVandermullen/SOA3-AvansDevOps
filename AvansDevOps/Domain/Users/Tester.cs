@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Users
 {
-    internal class Tester
+    public class Tester : User
     {
+        public Tester(string name, string emailAddress, string slackUsername) : base(name, emailAddress, slackUsername)
+        {
+
+        }
     }
 }

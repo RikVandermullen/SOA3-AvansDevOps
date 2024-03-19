@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Users
 {
-    internal class ScrumMaster
+    public class ScrumMaster : User
     {
+        public ScrumMaster(string name, string emailAddress, string slackUsername) : base(name, emailAddress, slackUsername)
+        {
+
+        }
     }
 }
