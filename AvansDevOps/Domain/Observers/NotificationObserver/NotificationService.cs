@@ -1,4 +1,5 @@
-﻿using AvansDevOps.Domain.Adapters.EmailAdapter;
+﻿using AvansDevOps.Domain.Adapters;
+using AvansDevOps.Domain.Adapters.EmailAdapter;
 using AvansDevOps.Domain.Adapters.SlackAdapter;
 using AvansDevOps.Domain.Users;
 using System;
@@ -11,17 +12,19 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
 {
     public class NotificationService
     {
-        private EmailAdapter EmailAdapter = new EmailAdapter();
-        private SlackAdapter SlackAdapter = new SlackAdapter();
+        private List<INotificationService> Adapters = new List<INotificationService> { new EmailAdapter() };
 
-        public void SendEmail(User user, string message)
+        public void Send(User user, string message)
         {
-            EmailAdapter.Send(user, message);
+            foreach(INotificationService adapter in Adapters)
+            {
+                adapter.Send(user, message);
+            }
         }
 
-        public void SendSlack(User user, string message)
+        public void AddAdapter(INotificationService adapter)
         {
-            SlackAdapter.Send(user, message);
+            Adapters.Add(adapter);
         }
     }
 }
