@@ -1,4 +1,5 @@
-﻿using AvansDevOps.Domain.States;
+﻿using AvansDevOps.Domain.Observers;
+using AvansDevOps.Domain.States;
 using AvansDevOps.Domain.States.ReleaseSprintState;
 using AvansDevOps.Domain.Users;
 using System;
@@ -9,12 +10,13 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Sprints
 {
-    public abstract class Sprint
+    public abstract class Sprint : IPublisher
     {
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public List<User> Users { get; set; }
+        public List<IListener> Listeners = new List<IListener>();
 
         public Sprint(string name, DateTime startDate, DateTime endDate)
         {
@@ -49,6 +51,22 @@ namespace AvansDevOps.Domain.Sprints
 
         public abstract void Close();
 
+        public void Subscribe(IListener listener)
+        {
+            Listeners.Add(listener);
+        }
 
+        public void Unsubscribe(IListener listener)
+        {
+            Listeners.Remove(listener);
+        }
+
+        public void NotifyListeners()
+        {
+            foreach (IListener listener in Listeners)
+            {
+                listener.Notify(this);
+            }
+        }
     }
 }

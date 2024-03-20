@@ -1,4 +1,6 @@
-﻿using AvansDevOps.Domain.States.BacklogItemState;
+﻿using AvansDevOps.Domain.Sprints;
+using AvansDevOps.Domain.States.BacklogItemState;
+using AvansDevOps.Domain.States.ReleaseSprintState;
 using AvansDevOps.Domain.Users;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,13 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
             {
                 HandleReadyForTesting(item);
                 HandleFailedTests(item);
+            }
+
+            if (publisher is ReleaseSprint sprint)
+            {
+                HandleCancelledRelease(sprint);
+                HandleClosedRelease(sprint);
+                HandleFailedDeployment(sprint);
             }
         }
 
@@ -47,5 +56,48 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
                 }
             }
         }
+
+        private void HandleCancelledRelease(ReleaseSprint sprint)
+        {
+            if (sprint.ReleaseSprintState is CancelledState)
+            {
+                foreach (User user in sprint.Users)
+                {
+                    if (user is ScrumMaster or ProductOwner)
+                    {
+                        NotificationService.Send(user, $"Sprint Cancelled: The sprint {sprint.Name} has been cancelled.");
+                    }
+                }
+            }
+        }
+
+        private void HandleClosedRelease(ReleaseSprint sprint)
+        {
+            if (sprint.ReleaseSprintState is ClosedState)
+            {
+                foreach (User user in sprint.Users)
+                {
+                    if (user is ScrumMaster or ProductOwner)
+                    {
+                        NotificationService.Send(user, $"Sprint Closed: The sprint {sprint.Name} has been succesfully closed.");
+                    }
+                }
+            }
+        }
+
+        private void HandleFailedDeployment(ReleaseSprint sprint)
+        {
+            if (sprint.ReleaseSprintState is FinishedState && sprint.PreviousState is DeployingState)
+            {
+                foreach (User user in sprint.Users)
+                {
+                    if (user is ScrumMaster)
+                    {
+                        NotificationService.Send(user, $"Sprint Failed: Errors occured while deploying the sprint {sprint.Name}.");
+                    }
+                }
+            }
+        }
+
     }
 }
