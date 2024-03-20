@@ -1,5 +1,6 @@
 ﻿using AvansDevOps.Domain.States;
 using AvansDevOps.Domain.States.ReleaseSprintState;
+using AvansDevOps.Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,28 @@ namespace AvansDevOps.Domain.Sprints
 {
     public abstract class Sprint
     {
-        protected string Name { get; set; }
-        protected DateTime StartDate { get; set; }
-        protected DateTime EndDate { get; set; }
+        public string Name { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public List<User> Users { get; set; }
 
-        protected Sprint(string name, DateTime startDate, DateTime endDate)
+        public Sprint(string name, DateTime startDate, DateTime endDate)
         {
             Name = name;
             StartDate = startDate;
             EndDate = endDate;
+            Users = new List<User>();
         }
 
         public bool EndDateReached()
         {
             DateTime currentDate = DateTime.Now;
             return currentDate > EndDate;
+        }
+
+        public void AddUser(User user)
+        {
+            Users.Add(user);
         }
 
         public abstract void SetState(ISprintState sprintState);

@@ -11,7 +11,7 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
     {
         public void Notify(IPublisher publisher)
         {
-            if (publisher.GetType() == typeof(Thread))
+            if (publisher is Thread)
             {
                 Thread thread = (Thread)publisher;
                 foreach(User user in thread.Users)

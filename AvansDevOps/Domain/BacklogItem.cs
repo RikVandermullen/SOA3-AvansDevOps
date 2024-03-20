@@ -1,5 +1,6 @@
 ﻿using AvansDevOps.Domain.Observers;
 using AvansDevOps.Domain.Observers.NotificationObserver;
+using AvansDevOps.Domain.Sprints;
 using AvansDevOps.Domain.States.BacklogItemState;
 using AvansDevOps.Domain.Users;
 using System;
@@ -10,18 +11,28 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain
 {
-    public class BacklogItem
+    public class BacklogItem : IPublisher
     {
-        private IBacklogItemState BacklogItemState { get; set; }
+        public IBacklogItemState BacklogItemState { get; private set; }
+        public IBacklogItemState PreviousState { get; private set; }
         private List<Activity> Activities { get; set; }
-        public NotificationService NotificationService = new NotificationService();
-        public Developer Developer;
 
-        public BacklogItem(Developer developer)
+        public NotificationService NotificationService = new NotificationService();
+        public Developer Developer { get; set; }
+        public List<IListener> Listeners { get; set; }
+        public Sprint Sprint { get; set; }
+        
+
+        public BacklogItem(Developer developer, Sprint sprint)
         {
-            BacklogItemState = new TodoState(this); 
+            BacklogItemState = new TodoState(this);
+            PreviousState = BacklogItemState;
+
             Activities = new List<Activity>();
             Developer = developer;
+            Sprint = sprint;
+
+            Listeners = new List<IListener>();
         }
 
         public bool CheckActivitiesDone()
@@ -45,7 +56,9 @@ namespace AvansDevOps.Domain
 
         public void SetState(IBacklogItemState backlogItemState)
         {
+            PreviousState = BacklogItemState;
             BacklogItemState = backlogItemState;
+            NotifyListeners();
         }
 
         public void SetToToDo()
@@ -76,6 +89,24 @@ namespace AvansDevOps.Domain
         public void SetToDone()
         {
             BacklogItemState.SetToDone();
+        }
+
+        public void Subscribe(IListener listener)
+        {
+            Listeners.Add(listener);
+        }
+
+        public void Unsubscribe(IListener listener)
+        {
+            Listeners.Remove(listener);
+        }
+
+        public void NotifyListeners()
+        {
+            foreach(IListener listener in Listeners)
+            {
+                listener.Notify(this);
+            }
         }
     }
 }
