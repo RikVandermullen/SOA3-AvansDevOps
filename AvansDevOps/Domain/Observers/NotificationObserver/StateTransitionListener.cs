@@ -9,6 +9,8 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
 {
     public class StateTransitionListener : IListener
     {
+        public NotificationService NotificationService = new NotificationService();
+
         public void Notify(IPublisher publisher)
         {
             if (publisher is BacklogItem item)
@@ -26,7 +28,7 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
                 {
                     if (user is Tester)
                     {
-                        item.NotificationService.Send(user, "A backlog item is ready for testing.");
+                        NotificationService.Send(user, "A backlog item is ready for testing.");
                     }
                 }
             }
@@ -40,7 +42,7 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
                 {
                     if (user is ScrumMaster)
                     {
-                        item.NotificationService.Send(user, "A backlog item failed tests and has been returned to todo.");
+                        NotificationService.Send(user, "A backlog item failed tests and has been returned to todo.");
                     }
                 }
             }

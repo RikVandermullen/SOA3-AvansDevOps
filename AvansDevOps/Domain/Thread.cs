@@ -13,7 +13,6 @@ namespace AvansDevOps.Domain
     {
         public List<User> Users = new List<User>();
         public List<IListener> Listeners = new List<IListener>();
-        public NotificationService NotificationService = new NotificationService();
 
         public void NotifyListeners()
         {

@@ -9,6 +9,8 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
 {
     public class ThreadUpdateListener : IListener
     {
+        public NotificationService NotificationService = new NotificationService();
+
         public void Notify(IPublisher publisher)
         {
             if (publisher is Thread)
@@ -16,7 +18,7 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
                 Thread thread = (Thread)publisher;
                 foreach(User user in thread.Users)
                 {
-                    thread.NotificationService.Send(user, "There has been an update in a thread you commented on.");
+                    NotificationService.Send(user, "There has been an update in a thread you commented on.");
                 }
             }
         }
