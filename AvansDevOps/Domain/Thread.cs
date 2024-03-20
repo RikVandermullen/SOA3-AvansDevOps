@@ -13,6 +13,12 @@ namespace AvansDevOps.Domain
     {
         public List<User> Users = new List<User>();
         public List<IListener> Listeners = new List<IListener>();
+        public BacklogItem BacklogItem { get; set; }
+
+        public Thread(BacklogItem backlogItem)
+        {
+            BacklogItem = backlogItem;
+        }
 
         public void NotifyListeners()
         {

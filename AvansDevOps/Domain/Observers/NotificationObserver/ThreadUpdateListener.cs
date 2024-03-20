@@ -18,7 +18,7 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
                 Thread thread = (Thread)publisher;
                 foreach(User user in thread.Users)
                 {
-                    NotificationService.Send(user, "There has been an update in a thread you commented on.");
+                    NotificationService.Send(user, $"Thread Update: There has been an update in the thread for backlog item {thread.BacklogItem.Name} you commented on.");
                 }
             }
         }
