@@ -19,6 +19,7 @@ namespace AvansDevOps.Domain
         public Developer Developer { get; set; }
         public List<IListener> Listeners { get; set; }
         public Sprint Sprint { get; set; }
+        public string Name { get; set; }
         
 
         public BacklogItem(Developer developer, Sprint sprint)

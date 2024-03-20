@@ -37,7 +37,7 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
                 {
                     if (user is Tester)
                     {
-                        NotificationService.Send(user, "A backlog item is ready for testing.");
+                        NotificationService.Send(user, $"The backlog item {item.Name} is ready for testing.");
                     }
                 }
             }
@@ -51,7 +51,7 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
                 {
                     if (user is ScrumMaster)
                     {
-                        NotificationService.Send(user, "A backlog item failed tests and has been returned to todo.");
+                        NotificationService.Send(user, $"The backlog item {item.Name} failed tests and has been returned to todo.");
                     }
                 }
             }
