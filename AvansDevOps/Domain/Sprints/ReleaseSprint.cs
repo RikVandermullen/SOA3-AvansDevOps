@@ -1,6 +1,8 @@
-﻿using AvansDevOps.Domain.Observers;
+﻿using AvansDevOps.Domain.Composites.PipelineComposite;
+using AvansDevOps.Domain.Observers;
 using AvansDevOps.Domain.States;
 using AvansDevOps.Domain.States.ReleaseSprintState;
+using AvansDevOps.Domain.Visitors.PipelineVisitor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +17,14 @@ namespace AvansDevOps.Domain.Sprints
         public List<IListener> Listeners = new List<IListener>();
         public IReleaseSprintState PreviousState { get; set; }
 
-        public ReleaseSprint(string name, DateTime startDate, DateTime endDate) : base(name, startDate, endDate)
+        public ReleaseSprint(string name, DateTime startDate, DateTime endDate, Pipeline pipeline) : base(name, startDate, endDate, pipeline)
         {
             ReleaseSprintState = new CreatedState(this);
             PreviousState = ReleaseSprintState;
             Name = name;
             StartDate = startDate;
             EndDate = endDate;
+            Pipeline = pipeline;
         }
 
         public override void SetState(ISprintState releaseSprintState)
@@ -44,6 +47,7 @@ namespace AvansDevOps.Domain.Sprints
         public override void Deploy()
         {
             ReleaseSprintState.Deploy();
+            Pipeline.AcceptVisitor(new ExecuteVisitor());
         }
 
         public override void Cancel()

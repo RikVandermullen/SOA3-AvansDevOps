@@ -1,4 +1,5 @@
-﻿using AvansDevOps.Domain.Observers;
+﻿using AvansDevOps.Domain.Composites.PipelineComposite;
+using AvansDevOps.Domain.Observers;
 using AvansDevOps.Domain.States;
 using AvansDevOps.Domain.States.ReleaseSprintState;
 using AvansDevOps.Domain.Users;
@@ -17,12 +18,14 @@ namespace AvansDevOps.Domain.Sprints
         public DateTime EndDate { get; set; }
         public List<User> Users { get; set; }
         public List<IListener> Listeners = new List<IListener>();
+        public Pipeline Pipeline { get; set; }
 
-        public Sprint(string name, DateTime startDate, DateTime endDate)
+        public Sprint(string name, DateTime startDate, DateTime endDate, Pipeline pipeline)
         {
             Name = name;
             StartDate = startDate;
             EndDate = endDate;
+            Pipeline = pipeline;
             Users = new List<User>();
         }
 
