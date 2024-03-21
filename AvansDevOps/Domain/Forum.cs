@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain
 {
-    internal class Forum
+    public class Forum
     {
     }
 }
