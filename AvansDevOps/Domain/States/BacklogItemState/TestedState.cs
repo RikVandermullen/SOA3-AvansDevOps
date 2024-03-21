@@ -49,5 +49,10 @@ namespace AvansDevOps.Domain.States.BacklogItemState
 
             BacklogItem.SetState(new DoneState(BacklogItem));
         }
+
+        public void SetToClosed()
+        {
+            throw new InvalidOperationException();
+        }
     }
 }

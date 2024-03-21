@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.States.BacklogItemState
 {
-    public class DoneState : IBacklogItemState
+    public class ClosedState : IBacklogItemState
     {
         private BacklogItem BacklogItem { get; set; }
 
-        public DoneState(BacklogItem backlogItem)
+        public ClosedState(BacklogItem backlogItem)
         {
             BacklogItem = backlogItem;
         }
 
         public void SetToToDo()
         {
-            BacklogItem.SetState(new TodoState(BacklogItem));
+            throw new InvalidOperationException();
         }
 
         public void SetToDoing()
@@ -47,7 +47,7 @@ namespace AvansDevOps.Domain.States.BacklogItemState
 
         public void SetToClosed()
         {
-            BacklogItem.SetState(new ClosedState(BacklogItem));
+            throw new InvalidOperationException();
         }
     }
 }

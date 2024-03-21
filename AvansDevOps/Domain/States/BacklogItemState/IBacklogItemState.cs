@@ -14,5 +14,6 @@ namespace AvansDevOps.Domain.States.BacklogItemState
         public void SetToTesting();
         public void SetToTested();
         public void SetToDone();
+        public void SetToClosed();
     }
 }
