@@ -19,7 +19,10 @@ ISprintFactory sprintFactory = new ReleaseSprintFactory();
 Sprint sprint = sprintFactory.CreateSprint("test sprint", DateTime.Now, DateTime.Now);
 
 BacklogItem backlogItem = new BacklogItem((Developer)dev1, sprint, "UserAuthorizationFunctionality");
+
 Thread thread = new Thread(backlogItem, "AuthGuard Help");
+backlogItem.AddThread(thread);
+
 thread.Subscribe(new ThreadUpdateListener());
 
 thread.AddForumComponent(new Comment(dev1, "Im confused mate"));
@@ -31,5 +34,9 @@ project.Forum.AddForumComponent(thread);
 thread.AddForumComponent(new Comment(dev2, "You there?"));
 thread.AddForumComponent(new Comment(dev1, "Yeah sorry"));
 
-//LockVisitor lockVisitor = new LockVisitor();
-//project.Forum.AcceptVisitor(lockVisitor);
+backlogItem.Subscribe(new StateTransitionListener());
+backlogItem.SetToDoing();
+backlogItem.SetToReadyForTesting();
+backlogItem.SetToTesting();
+backlogItem.SetToTested();
+backlogItem.SetToDone();

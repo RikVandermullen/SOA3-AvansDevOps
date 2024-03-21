@@ -6,6 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SprintClosedState = AvansDevOps.Domain.States.ReleaseSprintState.ClosedState;
+using BacklogItemClosedState = AvansDevOps.Domain.States.BacklogItemState.ClosedState;
+using Thread = AvansDevOps.Domain.Composites.ForumComposite.Thread;
+using AvansDevOps.Domain.Visitors.ForumVisitor;
 
 namespace AvansDevOps.Domain.Observers.NotificationObserver
 {
@@ -19,6 +23,7 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
             {
                 HandleReadyForTesting(item);
                 HandleFailedTests(item);
+                HandleBacklogClosing(item);
             }
 
             if (publisher is ReleaseSprint sprint)
@@ -73,7 +78,7 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
 
         private void HandleClosedRelease(ReleaseSprint sprint)
         {
-            if (sprint.ReleaseSprintState is ClosedState)
+            if (sprint.ReleaseSprintState is SprintClosedState)
             {
                 foreach (User user in sprint.Users)
                 {
@@ -95,6 +100,17 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
                     {
                         NotificationService.Send(user, $"Sprint Failed: Errors occured while deploying the sprint {sprint.Name}.");
                     }
+                }
+            }
+        }
+
+        private void HandleBacklogClosing(BacklogItem backlogItem)
+        {
+            if (backlogItem.BacklogItemState is BacklogItemClosedState)
+            {
+                foreach (Thread thread in backlogItem.Threads)
+                {
+                    thread.AcceptVisitor(new LockVisitor());
                 }
             }
         }

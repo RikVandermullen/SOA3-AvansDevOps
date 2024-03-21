@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Thread = AvansDevOps.Domain.Composites.ForumComposite.Thread;
 
 namespace AvansDevOps.Domain
 {
@@ -20,7 +20,7 @@ namespace AvansDevOps.Domain
         public List<IListener> Listeners { get; set; }
         public Sprint Sprint { get; set; }
         public string Name { get; set; }
-        
+        public List<Thread> Threads { get; set; }
 
         public BacklogItem(Developer developer, Sprint sprint, string name)
         {
@@ -31,6 +31,7 @@ namespace AvansDevOps.Domain
             Developer = developer;
             Sprint = sprint;
             Name = name;
+            Threads = new List<Thread>();
 
             Listeners = new List<IListener>();
         }
@@ -52,6 +53,11 @@ namespace AvansDevOps.Domain
         public void AddActivity(Activity activity)
         {
             Activities.Add(activity);
+        }
+
+        public void AddThread(Thread thread)
+        {
+            Threads.Add(thread);
         }
 
         public void SetState(IBacklogItemState backlogItemState)
@@ -89,6 +95,11 @@ namespace AvansDevOps.Domain
         public void SetToDone()
         {
             BacklogItemState.SetToDone();
+        }
+
+        public void SetToClosed()
+        {
+            BacklogItemState.SetToClosed();
         }
 
         public void Subscribe(IListener listener)
