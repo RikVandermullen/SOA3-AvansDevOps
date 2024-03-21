@@ -1,4 +1,5 @@
 ﻿using AvansDevOps.Domain;
+using AvansDevOps.Domain.Adapters.GitHubAdapter;
 using AvansDevOps.Domain.Composites.ForumComposite;
 using AvansDevOps.Domain.Composites.PipelineComposite;
 using AvansDevOps.Domain.Factories.SprintFactory;
@@ -24,7 +25,7 @@ thread.Subscribe(new ThreadUpdateListener());
 thread.AddForumComponent(new Comment(dev1, "Im confused mate"));
 thread.AddForumComponent(new Comment(dev2, "Whatsup? Ill help you out"));
 
-Project project = new Project("Project1");
+Project project = new Project("Project1", new GitHubAdapter());
 project.Forum.AddForumComponent(thread);
 
 thread.AddForumComponent(new Comment(dev2, "You there?"));
