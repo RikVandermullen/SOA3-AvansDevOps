@@ -32,7 +32,3 @@ thread.AddForumComponent(new Comment(dev1, "Yeah sorry"));
 
 //LockVisitor lockVisitor = new LockVisitor();
 //project.Forum.AcceptVisitor(lockVisitor);
-
-
-//UnlockVisitor unlockVisitor = new UnlockVisitor();
-//project.Forum.AcceptVisitor(unlockVisitor);
