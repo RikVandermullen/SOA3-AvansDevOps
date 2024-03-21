@@ -17,14 +17,13 @@ namespace AvansDevOps.Domain.Sprints
         public List<IListener> Listeners = new List<IListener>();
         public IReleaseSprintState PreviousState { get; set; }
 
-        public ReleaseSprint(string name, DateTime startDate, DateTime endDate, Pipeline pipeline) : base(name, startDate, endDate, pipeline)
+        public ReleaseSprint(string name, DateTime startDate, DateTime endDate) : base(name, startDate, endDate)
         {
             ReleaseSprintState = new CreatedState(this);
             PreviousState = ReleaseSprintState;
             Name = name;
             StartDate = startDate;
             EndDate = endDate;
-            Pipeline = pipeline;
         }
 
         public override void SetState(ISprintState releaseSprintState)
@@ -65,5 +64,9 @@ namespace AvansDevOps.Domain.Sprints
             throw new NotImplementedException();
         }
 
+        public override void AddPipeline(Pipeline pipeline)
+        {
+            Pipeline = pipeline;
+        }
     }
 }

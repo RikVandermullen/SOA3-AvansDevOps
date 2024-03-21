@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AvansDevOps.Domain.Composites.PipelineComposite;
 using AvansDevOps.Domain.States;
 using AvansDevOps.Domain.States.ReviewSprintState;
 
@@ -52,6 +53,11 @@ namespace AvansDevOps.Domain.Sprints
         }
 
         public override void Deploy()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AddPipeline(Pipeline pipeline)
         {
             throw new NotImplementedException();
         }

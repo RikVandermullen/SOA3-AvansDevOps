@@ -20,12 +20,11 @@ namespace AvansDevOps.Domain.Sprints
         public List<IListener> Listeners = new List<IListener>();
         public Pipeline Pipeline { get; set; }
 
-        public Sprint(string name, DateTime startDate, DateTime endDate, Pipeline pipeline)
+        public Sprint(string name, DateTime startDate, DateTime endDate)
         {
             Name = name;
             StartDate = startDate;
             EndDate = endDate;
-            Pipeline = pipeline;
             Users = new List<User>();
         }
 
@@ -39,6 +38,8 @@ namespace AvansDevOps.Domain.Sprints
         {
             Users.Add(user);
         }
+
+        public abstract void AddPipeline(Pipeline pipeline);
 
         public abstract void SetState(ISprintState sprintState);
 
