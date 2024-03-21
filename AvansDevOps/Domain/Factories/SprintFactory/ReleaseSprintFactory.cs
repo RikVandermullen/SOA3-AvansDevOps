@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Factories.SprintFactory
 {
-    public class ReleaseSprintFactory : ISprintFactory
+    public class ReleaseSprintFactory : SprintFactory
     {
         public override Sprint CreateSprint(string name, DateTime startDate, DateTime endDate)
         {

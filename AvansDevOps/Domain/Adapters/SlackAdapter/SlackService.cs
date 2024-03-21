@@ -9,9 +9,9 @@ namespace AvansDevOps.Domain.Adapters.SlackAdapter
 {
     public class SlackService
     {
-        private string Username { get; set; }
-        private string Name { get; set; }
-        private string Message { get; set; }
+        private string Username { get; set; } = null!;
+        private string Name { get; set; } = null!;
+        private string Message { get; set; } = null!;
 
         public void SetUsername(string username)
         {

@@ -9,14 +9,14 @@ namespace AvansDevOps.Domain.Adapters.SlackAdapter
 { 
     public class SlackAdapter : INotificationAdapter
     {
-        private SlackService SlackService = new SlackService();
+        private readonly SlackService _slackService = new SlackService();
 
         public void Send(User user, string message)
         {
-            SlackService.SetUsername(user.SlackUsername);
-            SlackService.SetName(user.Name);
-            SlackService.SetMessage(message);
-            SlackService.SendSlack();
+            _slackService.SetUsername(user.SlackUsername);
+            _slackService.SetName(user.Name);
+            _slackService.SetMessage(message);
+            _slackService.SendSlack();
         }
     }
 }

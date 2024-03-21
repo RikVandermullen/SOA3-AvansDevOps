@@ -8,9 +8,9 @@ namespace AvansDevOps.Domain.Adapters.EmailAdapter
 {
     public class EmailService
     {
-        private string EmailAddress { get; set; }
-        private string Name { get; set; }
-        private string Message { get; set; }
+        private string EmailAddress { get; set; } = null!;
+        private string Name { get; set; } = null!;
+        private string Message { get; set; } = null!;
 
         public void SetEmailAddress(string emailAddress)
         {

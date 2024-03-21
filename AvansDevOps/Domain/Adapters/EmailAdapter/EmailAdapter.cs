@@ -9,14 +9,14 @@ namespace AvansDevOps.Domain.Adapters.EmailAdapter
 {
     public class EmailAdapter : INotificationAdapter
     {
-        private EmailService EmailService = new EmailService();
+        private readonly EmailService _emailService = new EmailService();
 
         public void Send(User user, string message)
         {
-            EmailService.SetEmailAddress(user.EmailAddress);
-            EmailService.SetName(user.Name);
-            EmailService.SetMessage(message);
-            EmailService.SendEmail();
+            _emailService.SetEmailAddress(user.EmailAddress);
+            _emailService.SetName(user.Name);
+            _emailService.SetMessage(message);
+            _emailService.SendEmail();
         }
     }
 }

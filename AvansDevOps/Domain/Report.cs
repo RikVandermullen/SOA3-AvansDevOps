@@ -10,12 +10,11 @@ namespace AvansDevOps.Domain
 {
     public class Report
     {
-        private IReportExportStrategy ExportStrategy { get; set; }
+        private IReportExportStrategy ExportStrategy { get; set; } = null!;
         public string CompanyName { get; private set; }
         public string ProjectName { get; private set; }
         public string Version { get; private set; }
-        public DateTime Date { get; private set; }
-        
+        public DateTime Date { get; private set; }        
 
         public Report(string companyName, string projectName, string version, DateTime date)
         {

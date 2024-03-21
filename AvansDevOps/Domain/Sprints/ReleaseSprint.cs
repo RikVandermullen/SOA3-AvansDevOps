@@ -14,7 +14,6 @@ namespace AvansDevOps.Domain.Sprints
     public class ReleaseSprint : Sprint
     {
         public IReleaseSprintState ReleaseSprintState { get; set; }
-        public List<IListener> Listeners = new List<IListener>();
         public IReleaseSprintState PreviousState { get; set; }
 
         public ReleaseSprint(string name, DateTime startDate, DateTime endDate) : base(name, startDate, endDate)

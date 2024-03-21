@@ -7,7 +7,7 @@ using AvansDevOps.Domain.Sprints;
 
 namespace AvansDevOps.Domain.Factories.SprintFactory
 {
-    public abstract class ISprintFactory
+    public abstract class SprintFactory
     {
         public abstract Sprint CreateSprint(string name, DateTime startDate, DateTime endDate);
     }

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Factories.UserFactory
 {
-    public interface IUserFactory
+    public abstract class UserFactory
     {
-        public User CreateUser(string name, string emailAddress, string slackUsername);
+        public abstract User CreateUser(string name, string emailAddress, string slackUsername);
     }
 }

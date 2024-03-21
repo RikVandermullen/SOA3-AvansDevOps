@@ -8,8 +8,8 @@ namespace AvansDevOps.Domain.Adapters
 {
     public interface IVersionControlAdapter
     {
-        public void Commit(string ProjectName, BacklogItem item);
-        public void Push(string ProjectName, BacklogItem item);
-        public void Pull(string ProjectName);
+        public void Commit(string projectName, BacklogItem item);
+        public void Push(string projectName, BacklogItem item);
+        public void Pull(string projectName);
     }
 }

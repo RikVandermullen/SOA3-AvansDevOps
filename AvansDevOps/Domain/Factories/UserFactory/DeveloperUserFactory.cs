@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace AvansDevOps.Domain.Factories.UserFactory
 {
-    public class DeveloperUserFactory : IUserFactory
+    public class DeveloperUserFactory : UserFactory
     {
-        public User CreateUser(string name, string emailAddress, string slackUsername)
+        public override User CreateUser(string name, string emailAddress, string slackUsername)
         {
             return new Developer(name, emailAddress, slackUsername);
         }

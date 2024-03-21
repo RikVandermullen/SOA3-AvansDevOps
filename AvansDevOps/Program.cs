@@ -11,11 +11,11 @@ using AvansDevOps.Domain.Visitors.ForumVisitor;
 using AvansDevOps.Domain.Visitors.PipelineVisitor;
 using Thread = AvansDevOps.Domain.Composites.ForumComposite.Thread;
 
-IUserFactory userFactory = new DeveloperUserFactory();
+UserFactory userFactory = new DeveloperUserFactory();
 User dev1 = userFactory.CreateUser("dev1", "dev1@mail", "dev1slack");
 User dev2 = userFactory.CreateUser("dev2", "dev2@mail", "dev2slack");
 
-ISprintFactory sprintFactory = new ReleaseSprintFactory();
+SprintFactory sprintFactory = new ReleaseSprintFactory();
 Sprint sprint = sprintFactory.CreateSprint("test sprint", DateTime.Now, DateTime.Now);
 
 BacklogItem backlogItem = new BacklogItem((Developer)dev1, sprint, "UserAuthorizationFunctionality");

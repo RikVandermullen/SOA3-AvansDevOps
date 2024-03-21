@@ -11,8 +11,8 @@ namespace AvansDevOps.Domain.Sprints
 {
     public class ReviewSprint : Sprint
     {
-        private IReviewSprintState ReviewSprintState { get; set; }
-        public bool ReviewSummaryUploaded { get; private set; }
+        public IReviewSprintState ReviewSprintState { get; set; }
+        public bool ReviewSummaryUploaded { get; set; }
 
         public ReviewSprint(string name, DateTime startDate, DateTime endDate) : base(name, startDate, endDate)
         {
