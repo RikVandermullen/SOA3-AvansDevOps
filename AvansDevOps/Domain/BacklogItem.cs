@@ -22,7 +22,7 @@ namespace AvansDevOps.Domain
         public string Name { get; set; }
         
 
-        public BacklogItem(Developer developer, Sprint sprint)
+        public BacklogItem(Developer developer, Sprint sprint, string name)
         {
             BacklogItemState = new TodoState(this);
             PreviousState = BacklogItemState;
@@ -30,6 +30,7 @@ namespace AvansDevOps.Domain
             Activities = new List<Activity>();
             Developer = developer;
             Sprint = sprint;
+            Name = name;
 
             Listeners = new List<IListener>();
         }

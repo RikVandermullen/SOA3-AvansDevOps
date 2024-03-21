@@ -11,7 +11,7 @@ namespace AvansDevOps.Domain.Composites.PipelineComposite
     public class Pipeline : PipelineComposite
     {
         public string Name { get; set; }
-
+        
         public Pipeline(string name)
         {
             Name = name;

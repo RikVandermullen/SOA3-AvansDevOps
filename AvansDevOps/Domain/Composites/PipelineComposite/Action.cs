@@ -10,7 +10,7 @@ namespace AvansDevOps.Domain.Composites.PipelineComposite
     public class Action : PipelineComponent
     {
         public string Command { get; set; }
-
+        
         public Action (string command)
         {
             Command = command;
