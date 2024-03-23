@@ -19,6 +19,7 @@ namespace AvansDevOps.Domain.Sprints
         public List<User> Users { get; set; }
         public List<IListener> Listeners = new List<IListener>();
         public Pipeline Pipeline { get; set; } = null!;
+        public List<BacklogItem> BacklogItems { get; set; }
 
         public Sprint(string name, DateTime startDate, DateTime endDate)
         {
@@ -26,6 +27,7 @@ namespace AvansDevOps.Domain.Sprints
             StartDate = startDate;
             EndDate = endDate;
             Users = new List<User>();
+            BacklogItems = new List<BacklogItem>();
         }
 
         public bool EndDateReached()
@@ -71,6 +73,11 @@ namespace AvansDevOps.Domain.Sprints
             {
                 listener.Notify(this);
             }
+        }
+
+        public void AddBacklogItems(List<BacklogItem> backlogItems)
+        {
+            BacklogItems.AddRange(backlogItems);
         }
     }
 }

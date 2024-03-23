@@ -1,6 +1,7 @@
 ﻿using AvansDevOps.Domain.Adapters;
 using AvansDevOps.Domain.Composites.ForumComposite;
 using AvansDevOps.Domain.Composites.PipelineComposite;
+using AvansDevOps.Domain.Factories.SprintFactory;
 using AvansDevOps.Domain.Sprints;
 using AvansDevOps.Domain.Users;
 using System;
@@ -36,6 +37,24 @@ namespace AvansDevOps.Domain
         public void AddBacklogItem(BacklogItem item)
         {
             BacklogItems.Add(item);
+        }
+
+        public void CreateSprint(SprintFactory factory, string name, DateTime startDate, DateTime endDate)
+        {
+            if (factory == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (factory is ReleaseSprintFactory)
+            {
+                Sprints.Add(factory.CreateSprint(name, startDate, endDate));
+            }
+
+            if (factory is ReviewSprintFactory)
+            {
+                Sprints.Add(factory.CreateSprint(name, startDate, endDate));
+            }
         }
     }
 }
