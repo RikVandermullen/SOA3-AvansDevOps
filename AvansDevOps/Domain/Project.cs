@@ -58,9 +58,9 @@ namespace AvansDevOps.Domain
 
         public void CreatePipeline(string name, Dictionary<Category, List<Action>> pipelineComponents, PipelineVisitor pipelineVisitor)
         {
-            if (pipelineComponents == null || pipelineComponents.Count == 0)
+            if (pipelineComponents == null)
             {
-                throw new ArgumentException("pipelineComponents cannot be null or empty.");
+                throw new ArgumentException("pipelineComponents cannot be null");
             }
 
             Pipeline = new Pipeline(name, pipelineVisitor);

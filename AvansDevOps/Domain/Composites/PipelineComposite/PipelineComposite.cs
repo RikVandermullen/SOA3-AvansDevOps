@@ -16,6 +16,11 @@ namespace AvansDevOps.Domain.Composites.PipelineComposite
             PipelineComponents = new List<PipelineComponent>();
         }
 
+        public List<PipelineComponent> GetPipelineComponents()
+        {
+            return PipelineComponents;
+        }
+
         public void AddPipelineComponent(PipelineComponent pipelineComponent)
         {
             PipelineComponents.Add(pipelineComponent);
