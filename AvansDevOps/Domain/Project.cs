@@ -53,19 +53,16 @@ namespace AvansDevOps.Domain
                 throw new ArgumentException("End date should not be before start date.");
             }
 
-            if (factory is ReleaseSprintFactory)
-            {
-                Sprints.Add(factory.CreateSprint(name, startDate, endDate));
-            }
-
-            if (factory is ReviewSprintFactory)
-            {
-                Sprints.Add(factory.CreateSprint(name, startDate, endDate));
-            }
+            Sprints.Add(factory.CreateSprint(name, startDate, endDate));
         }
 
         public void CreatePipeline(string name, Dictionary<Category, List<Action>> pipelineComponents, PipelineVisitor pipelineVisitor)
         {
+            if (pipelineComponents == null || pipelineComponents.Count == 0)
+            {
+                throw new ArgumentException("pipelineComponents cannot be null or empty.");
+            }
+
             Pipeline = new Pipeline(name, pipelineVisitor);
 
             foreach (var component in pipelineComponents)
