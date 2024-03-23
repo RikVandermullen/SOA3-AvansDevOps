@@ -477,8 +477,8 @@ namespace AvansDevOps.Tests
             backlogItem.SetToTesting();
 
             // Act & Assert
-            Assert.Throws<InvalidOperationException>(() => backlogItem.SetToToDo());
             Assert.Throws<InvalidOperationException>(() => backlogItem.SetToDoing());
+            Assert.Throws<InvalidOperationException>(() => backlogItem.SetToReadyForTesting());
             Assert.Throws<InvalidOperationException>(() => backlogItem.SetToTesting());
             Assert.Throws<InvalidOperationException>(() => backlogItem.SetToDone());
             Assert.Throws<InvalidOperationException>(() => backlogItem.SetToClosed());
@@ -548,12 +548,15 @@ namespace AvansDevOps.Tests
             backlogItem.SetToTesting();
             backlogItem.SetToTested();
             backlogItem.SetToDone();
+            backlogItem.SetToClosed();
 
             // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => backlogItem.SetToToDo());
             Assert.Throws<InvalidOperationException>(() => backlogItem.SetToDoing());
             Assert.Throws<InvalidOperationException>(() => backlogItem.SetToReadyForTesting());
             Assert.Throws<InvalidOperationException>(() => backlogItem.SetToTesting());
             Assert.Throws<InvalidOperationException>(() => backlogItem.SetToTested());
+            Assert.Throws<InvalidOperationException>(() => backlogItem.SetToClosed());
         }
 
         #endregion
