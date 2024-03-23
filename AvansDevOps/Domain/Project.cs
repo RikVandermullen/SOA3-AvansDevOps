@@ -48,6 +48,11 @@ namespace AvansDevOps.Domain
                 throw new ArgumentNullException();
             }
 
+            if (endDate < startDate)
+            {
+                throw new ArgumentException("End date should not be before start date.");
+            }
+
             if (factory is ReleaseSprintFactory)
             {
                 Sprints.Add(factory.CreateSprint(name, startDate, endDate));
