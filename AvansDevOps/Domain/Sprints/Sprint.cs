@@ -2,6 +2,7 @@
 using AvansDevOps.Domain.Observers;
 using AvansDevOps.Domain.States;
 using AvansDevOps.Domain.States.ReleaseSprintState;
+using AvansDevOps.Domain.Strategy.ReportStrategy;
 using AvansDevOps.Domain.Users;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace AvansDevOps.Domain.Sprints
         public List<IListener> Listeners = new List<IListener>();
         public Pipeline Pipeline { get; set; } = null!;
         public List<BacklogItem> BacklogItems { get; set; }
+        public Report Report { get; set; } = null!;
 
         public Sprint(string name, DateTime startDate, DateTime endDate)
         {
@@ -78,6 +80,14 @@ namespace AvansDevOps.Domain.Sprints
         public void AddBacklogItems(List<BacklogItem> backlogItems)
         {
             BacklogItems.AddRange(backlogItems);
+        }
+
+        public void GenerateReport(string companyName, string projectName, string version, IReportExportStrategy exportStrategy)
+        {
+            DateTime currentDate = DateTime.Now;
+            Report = new Report(companyName, projectName, version, currentDate);
+            Report.SetExportStrategy(exportStrategy);
+            Report.Export();
         }
     }
 }

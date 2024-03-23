@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Action = AvansDevOps.Domain.Composites.PipelineComposite.Action;
 
 namespace AvansDevOps.Domain
 {
@@ -54,6 +55,23 @@ namespace AvansDevOps.Domain
             if (factory is ReviewSprintFactory)
             {
                 Sprints.Add(factory.CreateSprint(name, startDate, endDate));
+            }
+        }
+
+        public void CreatePipeline(string name, Dictionary<Category, List<Action>> pipelineComponents)
+        {
+            Pipeline = new Pipeline(name);
+
+            foreach (var component in pipelineComponents)
+            {
+                Category category = component.Key;
+                List<Action> actions = component.Value;
+                Pipeline.AddPipelineComponent(component.Key);
+                
+                foreach (var action in actions)
+                {
+                    category.AddPipelineComponent(action);
+                }
             }
         }
     }

@@ -10,6 +10,7 @@ using SprintClosedState = AvansDevOps.Domain.States.ReleaseSprintState.ClosedSta
 using BacklogItemClosedState = AvansDevOps.Domain.States.BacklogItemState.ClosedState;
 using Thread = AvansDevOps.Domain.Composites.ForumComposite.Thread;
 using AvansDevOps.Domain.Visitors.ForumVisitor;
+using AvansDevOps.Domain.Visitors.PipelineVisitor;
 
 namespace AvansDevOps.Domain.Observers.NotificationObserver
 {
@@ -31,6 +32,7 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
                 HandleCancelledRelease(sprint);
                 HandleClosedRelease(sprint);
                 HandleFailedDeployment(sprint);
+                HandleDeployment(sprint);
             }
         }
 
@@ -112,6 +114,14 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
                 {
                     thread.AcceptVisitor(new LockVisitor());
                 }
+            }
+        }
+
+        private void HandleDeployment(ReleaseSprint sprint)
+        {
+            if (sprint.ReleaseSprintState is DeployingState)
+            {
+                sprint.Pipeline.AcceptVisitor(new ExecuteVisitor());
             }
         }
 
