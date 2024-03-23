@@ -15,7 +15,7 @@ namespace AvansDevOps.Domain
     {
         public IBacklogItemState BacklogItemState { get; private set; }
         public IBacklogItemState PreviousState { get; private set; }
-        private List<Activity> Activities { get; set; }
+        public List<Activity> Activities { get; set; }
         public Developer Developer { get; set; }
         public List<IListener> Listeners { get; set; }
         public Sprint Sprint { get; set; }
