@@ -11,10 +11,12 @@ namespace AvansDevOps.Domain.Composites.PipelineComposite
     public class Pipeline : PipelineComposite
     {
         public string Name { get; set; }
-        
-        public Pipeline(string name)
+        public PipelineVisitor PipelineVisitor { get; set; }
+
+        public Pipeline(string name, PipelineVisitor pipelineVisitor)
         {
             Name = name;
+            PipelineVisitor = pipelineVisitor;
         }
 
         public override void AcceptVisitor(PipelineVisitor visitor)

@@ -45,7 +45,6 @@ namespace AvansDevOps.Domain.Sprints
         public override void Deploy()
         {
             ReleaseSprintState.Deploy();
-            Pipeline.AcceptVisitor(new ExecuteVisitor());
         }
 
         public override void Cancel()

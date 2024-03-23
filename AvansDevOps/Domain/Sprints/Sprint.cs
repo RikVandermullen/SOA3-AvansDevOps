@@ -4,6 +4,7 @@ using AvansDevOps.Domain.States;
 using AvansDevOps.Domain.States.ReleaseSprintState;
 using AvansDevOps.Domain.Strategy.ReportStrategy;
 using AvansDevOps.Domain.Users;
+using AvansDevOps.Domain.Visitors.PipelineVisitor;
 using System;
 using System.Collections.Generic;
 using System.Linq;

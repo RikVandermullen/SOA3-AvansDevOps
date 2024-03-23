@@ -1,5 +1,6 @@
 ﻿using AvansDevOps.Domain;
 using AvansDevOps.Domain.Adapters.GitHubAdapter;
+using AvansDevOps.Domain.Adapters.SlackAdapter;
 using AvansDevOps.Domain.Composites.ForumComposite;
 using AvansDevOps.Domain.Composites.PipelineComposite;
 using AvansDevOps.Domain.Factories.SprintFactory;
@@ -42,40 +43,47 @@ using Thread = AvansDevOps.Domain.Composites.ForumComposite.Thread;
 //backlogItem.SetToTested();
 //backlogItem.SetToDone();
 
-//UserFactory userFactory = new ProductOwnerUserFactory();
-//User po = userFactory.CreateUser("po", "po@mail.com", "po-slack");
-//Project project = new Project("Project1", new GitHubAdapter(), (ProductOwner)po);
+UserFactory userFactory = new ProductOwnerUserFactory();
+User po = userFactory.CreateUser("po", "po@mail.com", "po-slack");
 
-//Dictionary<Category, List<Action>> components = new Dictionary<Category, List<Action>>();
+UserFactory smFactory = new ScrumMasterUserFactory();
+User sm = smFactory.CreateUser("sm", "sm@mail.com", "sm-slack");
+sm.AddPlatform(new SlackAdapter());
 
-//Category category = new Category("Build");
-//List<Action> actions = new List<Action>
-//{
-//    new Action("build step 1"),
-//    new Action("build step 2"),
-//    new Action("build step 3"),
-//    new Action("build step 4"),
-//};
+Project project = new Project("Project1", new GitHubAdapter(), (ProductOwner)po);
 
-//Category category1 = new Category("Test");
-//List<Action> actions1 = new List<Action>
-//{
-//    new Action("Test step 1"),
-//    new Action("Test step 2"),
-//    new Action("Test step 3"),
-//    new Action("Test step 4"),
-//};
+Dictionary<Category, List<Action>> components = new Dictionary<Category, List<Action>>();
 
-//components.Add(category, actions);
-//components.Add(category1, actions1);
+Category category = new Category("Build");
+List<Action> actions = new List<Action>
+{
+    new Action("build step 1"),
+    new Action("build step 2"),
+    new Action("build step 3"),
+    new Action("build step 4"),
+};
 
-//project.CreatePipeline("test pipeline", components);
+Category category1 = new Category("Test");
+List<Action> actions1 = new List<Action>
+{
+    new Action("Test step 1"),
+    new Action("Test step 2"),
+    new Action("Test step 3"),
+    new Action("Test step 4"),
+};
+
+components.Add(category, actions);
+components.Add(category1, actions1);
+
+project.CreatePipeline("test pipeline", components, new DryRunVisitor());
 
 
-//SprintFactory sprintFactory = new ReleaseSprintFactory();
-//Sprint sprint = sprintFactory.CreateSprint("test sprint", DateTime.Now, new DateTime(2023,3,22));
-//sprint.AddPipeline(project.Pipeline);
-//sprint.Start();
-//sprint.Finish();
-//sprint.Deploy();
+SprintFactory sprintFactory = new ReleaseSprintFactory();
+Sprint sprint = sprintFactory.CreateSprint("test sprint", DateTime.Now, new DateTime(2023, 3, 22));
+sprint.Subscribe(new StateTransitionListener());
+sprint.AddUser(sm);
+sprint.AddPipeline(project.Pipeline);
+sprint.Start();
+sprint.Finish();
+sprint.Deploy();
 

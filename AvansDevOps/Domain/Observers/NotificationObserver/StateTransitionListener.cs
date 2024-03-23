@@ -121,7 +121,15 @@ namespace AvansDevOps.Domain.Observers.NotificationObserver
         {
             if (sprint.ReleaseSprintState is DeployingState)
             {
-                sprint.Pipeline.AcceptVisitor(new ExecuteVisitor());
+                try
+                {
+                    sprint.Pipeline.AcceptVisitor(sprint.Pipeline.PipelineVisitor);
+                    sprint.Close();
+                }
+                catch
+                {
+                    sprint.Finish();
+                }
             }
         }
 

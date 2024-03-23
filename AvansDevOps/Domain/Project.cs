@@ -4,6 +4,7 @@ using AvansDevOps.Domain.Composites.PipelineComposite;
 using AvansDevOps.Domain.Factories.SprintFactory;
 using AvansDevOps.Domain.Sprints;
 using AvansDevOps.Domain.Users;
+using AvansDevOps.Domain.Visitors.PipelineVisitor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,9 +59,9 @@ namespace AvansDevOps.Domain
             }
         }
 
-        public void CreatePipeline(string name, Dictionary<Category, List<Action>> pipelineComponents)
+        public void CreatePipeline(string name, Dictionary<Category, List<Action>> pipelineComponents, PipelineVisitor pipelineVisitor)
         {
-            Pipeline = new Pipeline(name);
+            Pipeline = new Pipeline(name, pipelineVisitor);
 
             foreach (var component in pipelineComponents)
             {
