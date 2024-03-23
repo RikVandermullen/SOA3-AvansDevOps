@@ -134,7 +134,7 @@ namespace AvansDevOps.Tests
         {
             // Arrange
             SprintFactory sprintFactory = new ReleaseSprintFactory();
-            ReleaseSprint sprint = (ReleaseSprint)sprintFactory.CreateSprint("test sprint", new DateTime(2024, 3, 10), new DateTime(2024, 3, 20));
+            ReleaseSprint sprint = (ReleaseSprint)sprintFactory.CreateSprint("test sprint", new DateTime(2024, 3, 10), new DateTime(2024, 4, 20));
 
             // Act & Assert
             sprint.Start();
