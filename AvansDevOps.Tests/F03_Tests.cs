@@ -139,5 +139,86 @@ namespace AvansDevOps.Tests
             Assert.Throws<InvalidOperationException>(() => sprint.Close());
         }
 
+        [Fact]
+        public void Should_ThrowCreatedToInvalidState()
+        {
+            // Arrange
+            SprintFactory sprintFactory = new ReviewSprintFactory();
+            ReviewSprint sprint = (ReviewSprint)sprintFactory.CreateSprint("test-sprint", new DateTime(2024, 3, 20), new DateTime(2024, 2, 20));
+
+            // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => sprint.Finish());
+            Assert.Throws<InvalidOperationException>(() => sprint.StartReview());
+            Assert.Throws<InvalidOperationException>(() => sprint.Close());
+        }
+
+        [Fact]
+        public void Should_ThrowDoingToInvalidState()
+        {
+            // Arrange
+            SprintFactory sprintFactory = new ReviewSprintFactory();
+            ReviewSprint sprint = (ReviewSprint)sprintFactory.CreateSprint("test-sprint", new DateTime(2024, 3, 20), new DateTime(2024, 2, 20));
+
+            // Act
+            sprint.Start();
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(() => sprint.StartReview());
+            Assert.Throws<InvalidOperationException>(() => sprint.Close());
+        }
+
+        [Fact]
+        public void Should_ThrowFinishedToInvalidState()
+        {
+            // Arrange
+            SprintFactory sprintFactory = new ReviewSprintFactory();
+            ReviewSprint sprint = (ReviewSprint)sprintFactory.CreateSprint("test-sprint", new DateTime(2024, 3, 20), new DateTime(2024, 2, 20));
+
+            // Act
+            sprint.Start();
+            sprint.Finish();
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(() => sprint.Start());
+            Assert.Throws<InvalidOperationException>(() => sprint.Close());
+        }
+
+        [Fact]
+        public void Should_ThrowReviewingToInvalidState()
+        {
+            // Arrange
+            SprintFactory sprintFactory = new ReviewSprintFactory();
+            ReviewSprint sprint = (ReviewSprint)sprintFactory.CreateSprint("test-sprint", new DateTime(2024, 3, 20), new DateTime(2024, 2, 20));
+
+            // Act
+            sprint.Start();
+            sprint.Finish();
+            sprint.StartReview();
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(() => sprint.Start());
+            Assert.Throws<InvalidOperationException>(() => sprint.Finish());
+        }
+
+        [Fact]
+        public void Should_ThrowClosedToInvalidState()
+        {
+            // Arrange
+            SprintFactory sprintFactory = new ReviewSprintFactory();
+            ReviewSprint sprint = (ReviewSprint)sprintFactory.CreateSprint("test-sprint", new DateTime(2024, 3, 20), new DateTime(2024, 2, 20));
+            sprint.ReviewSummaryUploaded = true;
+
+            // Act
+            sprint.Start();
+            sprint.Finish();
+            sprint.StartReview();
+            sprint.Close();
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(() => sprint.Start());
+            Assert.Throws<InvalidOperationException>(() => sprint.Finish());
+            Assert.Throws<InvalidOperationException>(() => sprint.StartReview());
+        }
+
     }
 }

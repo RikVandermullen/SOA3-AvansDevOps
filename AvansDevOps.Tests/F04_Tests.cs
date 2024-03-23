@@ -140,5 +140,107 @@ namespace AvansDevOps.Tests
             sprint.Start();
             Assert.Throws<InvalidOperationException>(() => sprint.Finish());
         }
+
+        [Fact]
+        public void Should_ThrowWhenCreatedToInvalidState()
+        {
+            // Arrange
+            SprintFactory sprintFactory = new ReleaseSprintFactory();
+            ReleaseSprint sprint = (ReleaseSprint)sprintFactory.CreateSprint("test sprint", new DateTime(2024, 2, 23), new DateTime(2024, 2, 25));
+
+            // Act & Assert
+            Assert.Throws<InvalidOperationException>(() => sprint.Finish());
+            Assert.Throws<InvalidOperationException>(() => sprint.Deploy());
+            Assert.Throws<InvalidOperationException>(() => sprint.Close());
+            Assert.Throws<InvalidOperationException>(() => sprint.Cancel());
+        }
+
+        [Fact]
+        public void Should_ThrowWhenDoingToInvalidState()
+        {
+            // Arrange
+            SprintFactory sprintFactory = new ReleaseSprintFactory();
+            ReleaseSprint sprint = (ReleaseSprint)sprintFactory.CreateSprint("test sprint", new DateTime(2024, 2, 23), new DateTime(2024, 2, 25));
+
+            // Act
+            sprint.Start();
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(() => sprint.Deploy());
+            Assert.Throws<InvalidOperationException>(() => sprint.Close());
+            Assert.Throws<InvalidOperationException>(() => sprint.Cancel());
+        }
+
+        [Fact]
+        public void Should_ThrowWhenFinishedToInvalidState()
+        {
+            // Arrange
+            SprintFactory sprintFactory = new ReleaseSprintFactory();
+            ReleaseSprint sprint = (ReleaseSprint)sprintFactory.CreateSprint("test sprint", new DateTime(2024, 2, 23), new DateTime(2024, 2, 25));
+
+            // Act
+            sprint.Start();
+            sprint.Finish();
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(() => sprint.Start());
+            Assert.Throws<InvalidOperationException>(() => sprint.Close());
+        }
+
+        [Fact]
+        public void Should_ThrowWhenDeployingToInvalidState()
+        {
+            // Arrange
+            SprintFactory sprintFactory = new ReleaseSprintFactory();
+            ReleaseSprint sprint = (ReleaseSprint)sprintFactory.CreateSprint("test sprint", new DateTime(2024, 2, 23), new DateTime(2024, 2, 25));
+
+            // Act
+            sprint.Start();
+            sprint.Finish();
+            sprint.Deploy();
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(() => sprint.Start());
+            Assert.Throws<InvalidOperationException>(() => sprint.Cancel());
+        }
+
+        [Fact]
+        public void Should_ThrowWhenClosedToInvalidState()
+        {
+            // Arrange
+            SprintFactory sprintFactory = new ReleaseSprintFactory();
+            ReleaseSprint sprint = (ReleaseSprint)sprintFactory.CreateSprint("test sprint", new DateTime(2024, 2, 23), new DateTime(2024, 2, 25));
+
+            // Act
+            sprint.Start();
+            sprint.Finish();
+            sprint.Deploy();
+            sprint.Close();
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(() => sprint.Start());
+            Assert.Throws<InvalidOperationException>(() => sprint.Finish());
+            Assert.Throws<InvalidOperationException>(() => sprint.Deploy());
+            Assert.Throws<InvalidOperationException>(() => sprint.Cancel());
+        }
+
+        [Fact]
+        public void Should_ThrowWhenCancelledToInvalidState()
+        {
+            // Arrange
+            SprintFactory sprintFactory = new ReleaseSprintFactory();
+            ReleaseSprint sprint = (ReleaseSprint)sprintFactory.CreateSprint("test sprint", new DateTime(2024, 2, 23), new DateTime(2024, 2, 25));
+
+            // Act
+            sprint.Start();
+            sprint.Finish();
+            sprint.Cancel();
+
+            // Assert
+            Assert.Throws<InvalidOperationException>(() => sprint.Start());
+            Assert.Throws<InvalidOperationException>(() => sprint.Finish());
+            Assert.Throws<InvalidOperationException>(() => sprint.Deploy());
+            Assert.Throws<InvalidOperationException>(() => sprint.Close());
+        }
     }
 }
