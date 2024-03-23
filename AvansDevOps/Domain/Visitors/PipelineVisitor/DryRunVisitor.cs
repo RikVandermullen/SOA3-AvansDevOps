@@ -12,20 +12,20 @@ namespace AvansDevOps.Domain.Visitors.PipelineVisitor
     {
         public override void VisitAction(Action action)
         {
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine($"- Simulating action: {action.Command}");
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
 
         public override void VisitCategory(Category category)
         {
             Console.WriteLine("---------------------------");
-            Console.WriteLine($"Simulating category: {category.Name}");
-            Console.WriteLine("\t Executing...");
+            Console.WriteLine($"Starting category: {category.Name}");
             Console.WriteLine("---------------------------");
         }
 
         public override void VisitPipeline(Pipeline pipeline)
         {
-            Console.WriteLine("===========================");
             Console.WriteLine($"~~~ Starting Dry-Run of Pipeline: {pipeline.Name} ~~~");
             Console.WriteLine("========================== \n");
         }

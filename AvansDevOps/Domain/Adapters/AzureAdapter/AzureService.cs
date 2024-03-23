@@ -8,38 +8,38 @@ namespace AvansDevOps.Domain.Adapters.AzureAdapter
 {
     public class AzureService
     {
-        private string ProjectName { get; set; } = null!;
-        private string BacklogItemName { get; set; } = null!;
-        private string DeveloperName { get; set; } = null!;
+        private string AzureProjectName { get; set; } = null!;
+        private string AzureBacklogItemName { get; set; } = null!;
+        private string AzureDeveloperName { get; set; } = null!;
 
         public void SetProjectName(string name)
         {
-            ProjectName = name;
+            AzureProjectName = name;
         }
 
         public void SetBacklogItemName(string name)
         {
-            BacklogItemName = name;
+            AzureBacklogItemName = name;
         }
 
         public void SetDeveloperName(string name)
         {
-            DeveloperName = name;
+            AzureDeveloperName = name;
         }
 
         public void Commit()
         {
-            Console.WriteLine($"[Project: {ProjectName}]: {DeveloperName} committed {BacklogItemName} to Azure repository");
+            Console.WriteLine($"[Project: {AzureProjectName}]: {AzureDeveloperName} committed {AzureBacklogItemName} to Azure repository");
         }
 
         public void Push()
         {
-            Console.WriteLine($"[Project: {ProjectName}]: {DeveloperName} pushed {BacklogItemName} to Azure repository");
+            Console.WriteLine($"[Project: {AzureProjectName}]: {AzureDeveloperName} pushed {AzureBacklogItemName} to Azure repository");
         }
 
         public void Pull()
         {
-            Console.WriteLine($"[Project: {ProjectName}]: pulled from Azure repository");
+            Console.WriteLine($"[Project: {AzureProjectName}]: pulled from Azure repository");
         }
     }
 }
