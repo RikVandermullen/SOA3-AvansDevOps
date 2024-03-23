@@ -43,8 +43,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"RikVandermullen_SOA3-AvansDevOps" /o:"rikvandermullen-2" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.coverageReportPaths="AvansDevops/coverage.xml"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"RikVandermullen_SOA3-AvansDevOps" /o:"rikvandermullen-2" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.dotcover.reportsPaths="AvansDevops/dotCover.Output.html"
           dotnet build AvansDevOps --no-incremental
-          dotnet tool install --global dotnet-coverage
-          dotnet-coverage collect "dotnet test AvansDevops" -f xml -o "AvansDevops/coverage.xml"
+          dotnet tool install --global JetBrains.dotCover.GlobalTool
+          dotnet dotcover test --dcReportType=HTML
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
