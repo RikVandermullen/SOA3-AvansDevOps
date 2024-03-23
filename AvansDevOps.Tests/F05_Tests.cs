@@ -189,7 +189,7 @@ namespace AvansDevOps.Tests
         }
 
         [Fact]
-        public void F05_2_Should_ThrowWhenActivityNotDone()
+        public void F05_3_Should_ThrowWhenActivityNotDone()
         {
             // Arrange
             UserFactory userFactory = new DeveloperUserFactory();
