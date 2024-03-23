@@ -20,6 +20,19 @@ namespace AvansDevOps.Tests
     public class F09_Tests
     {
         [Fact]
+        public void F09_1_Should_AddMediaPlatform()
+        {
+            // Arrange
+            UserFactory userFactory = new DeveloperUserFactory();
+
+            // Act
+            User dev1 = userFactory.CreateUser("dev1", "dev1@mail", "dev1slack");
+
+            // Assert
+            Assert.Single(dev1.NotificationPlatforms);
+        }
+
+        [Fact]
         public void F09_7_1_Should_NotNotifyWhenPublisherNotOfTypeThread()
         {
             // Arrange
